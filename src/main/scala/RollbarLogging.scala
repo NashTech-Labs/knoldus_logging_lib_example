@@ -1,6 +1,6 @@
 import com.knoldus.lib.RollbarProvider
 
-object LoggingLibExample extends App {
+class RollbarLogging {
 
   case class Attribute(
     att: String,
@@ -12,7 +12,7 @@ object LoggingLibExample extends App {
   implicit val Attribute1Writes = Json.writes[Attribute]
   implicit val Attribute1Format = Json.format[Attribute]
 
-  /** Creating a new rollbar logger object using token  */
+  /** Creating a new rollbar logger object using token */
   val rollbarLogger = RollbarProvider.logger("token")
     /** withSendToRollbar helps us to set the option not to send logs to rollbar. Logs will be only in console. Default value - true */
     .withSendToRollbar(true)
@@ -24,7 +24,7 @@ object LoggingLibExample extends App {
     .requestId("requestId")
     /** option to set additional custom data to logs. Key should be string type. Value can be any data type */
     .withKeyValue("key", Attribute("att", "name"))
-    /** same like above, but with list of values*/
+    /** same like above, but with list of values */
     .withKeyValues("key", List(Attribute("att1", "name"), Attribute("att2", "name")))
 
 
